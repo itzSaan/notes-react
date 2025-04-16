@@ -7,6 +7,9 @@ import "./App.css";
 import Loader from "./components/Loader";
 import NoNotes from "./components/NoNotes";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
+
 function App() {
   const [loading, setLoading] = useState(true);
   const [notes, setNotes] = useState([]);
@@ -17,6 +20,7 @@ function App() {
     { name: "social", icon: "bi-share", color: "info" },
     { name: "important", icon: "bi-tag", color: "danger" },
   ]);
+
 
   const fetchData = async (url, options = {}) => {
     try {
@@ -33,7 +37,7 @@ function App() {
   useEffect(() => {
     const fetchNotes = async () => {
       setLoading(true);
-      const data = await fetchData("http://localhost:8080/notes");
+      const data = await fetchData(BACKEND_URL);
       if (data) setNotes(data);
       setLoading(false);
     };
@@ -58,8 +62,7 @@ function App() {
       return;
     }
     const updatedNote = { ...noteToUpdate, category: cate };
-    const updatedServerNote = await fetchData(
-      `http://localhost:8080/notes/${id}`,
+    const updatedServerNote = await fetchData(`${BACKEND_URL}/${id}`,
       {
         method: "PUT",
         headers: {
@@ -86,7 +89,7 @@ function App() {
     }
     const updatedNote = { ...noteToUpdate, isStared: !noteToUpdate.isStared };
     const updatedServerNote = await fetchData(
-      `http://localhost:8080/notes/${id}`,
+      `${BACKEND_URL}/${id}`,
       {
         method: "PUT",
         headers: {
@@ -109,7 +112,7 @@ function App() {
     const userResponse = confirm("Are you sure to delete ?");
 
     if (userResponse) {
-      const data = await fetchData(`http://localhost:8080/notes/${id}`, {
+      const data = await fetchData(`${BACKEND_URL}/${id}`, {
         method: "DELETE",
       });
       setNotes((previousNotes) =>
@@ -131,7 +134,7 @@ function App() {
     }
     const noteData = { title, desc };
     // Make post request to the API
-    const newNote = await fetchData("http://localhost:8080/notes", {
+    const newNote = await fetchData(BACKEND_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
