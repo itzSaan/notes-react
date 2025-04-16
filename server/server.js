@@ -14,4 +14,6 @@ server.use(cors());
 server.use(express.json());
 server.use("/notes", router);
 
+server.get('/', (req, res) => res.json({message: 'Server is Running.'}));
+
 server.listen(port, () => console.log(`Server is running on ${port}`));
