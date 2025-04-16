@@ -8,7 +8,7 @@ import Loader from "./components/Loader";
 import NoNotes from "./components/NoNotes";
 
 function App() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [notes, setNotes] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -153,7 +153,7 @@ function App() {
 
   return (
     <>
-      <div className="page-content container note-has-grid">
+      <div className="page-content container note-has-gri">
         <Header
           categories={categories}
           handleClick={handleClick}
@@ -161,7 +161,7 @@ function App() {
           selectedCategory={selectedCategory}
         />
         <div className="tab-content bg-transparent">
-          <div id="note-full-container" className="note-has-grid row">
+          <div id="note-full-container" className="note-has-grid ro">
             {loading ? (
               <Loader />
             ) : filteredNotes.length !== 0 ? (

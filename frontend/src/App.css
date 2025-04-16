@@ -1,24 +1,82 @@
-body{
-    background: #edf1f5;
+:root {
+    --background: #edf1f5;
+    --card-background: #fff;
+    --text-primary: #111315;
+    --text-secondary: rgba(33, 37, 41, 0.75);
+}
+
+@media (preferes-color-schema: dark) {
+:root {
+    --background: #0e1b2b;
+    --card-background: #08131e;
+    --text-primary: #ffffff;
+    --text-secondary: rgba(186, 186, 186, 0.75);
+}
+body {
+    background: var(--background);
+}
+}
+
+body {
+    background: var(--background);
+    color: var(--text-secondary);
     margin-top:20px;
     font-family: "Inter", sans-serif;
+    font-size: 15px;
+}
+.nav {
+    background-color: var(--card-background);
+}
+.modal .modal-content {
+    background-color: var(--card-background);
+    color: var(--text-secondary);
 }
 .nav-item a {
     cursor: pointer;
 }
+
+.note-has-grid {
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; */
+    column-count: 3;
+    column-gap: 15px;
+}
+@media (max-width: 1200px) {
+    .note-has-grid { column-count: 2;}
+}
+@media (max-width: 767px) {
+    .note-has-grid { column-count: 1;}
+}
+
+@media (max-width: 567px) {
+    .note-has-grid { column-count: 1;}
+    
+}
+
+.no-note {
+    position: absolute;
+    left: 0;
+    top: 40%;
+    width: 100%;
+}
 .card {
     position: relative;
-    display: flex;
+    /* display: flex; */
+    display: inline-block;
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background-color: #fff;
+    background-color: var(--card-background);
     background-clip: border-box;
     border: 0 solid transparent;
-    border-radius: 0;
+    border-radius: 10px;
+    /* width: calc(33.33% - 10px); */
+    width: 100%;
+    height: fit-content;
 }
 .card {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 .card-body {
     flex: 1 1 auto;
@@ -29,9 +87,6 @@ body{
     font-size: .9rem;
  }
 
- .note-has-grid .single-note-item .card {
-     border-radius: 10px
- }
 
  .note-has-grid .single-note-item .favourite-note {
      cursor: pointer
@@ -59,7 +114,7 @@ body{
      content: "\f0d7";
      font: normal normal normal 14px/1 FontAwesome;
      font-size: 12px;
-     color: #fff;
+     color: var(--card-background);
      position: absolute
  }
 
@@ -161,6 +216,9 @@ body{
     -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
     mask: radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
     animation: l13 1s infinite linear;
+    position: absolute;
+    left: calc(50% - 35px);
+    top: calc(50% - 35px);
   }
   @keyframes l13{ 
     100%{transform: rotate(1turn)}

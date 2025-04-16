@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   const notes = await Note.find(); // Search all notes
+  if (!notes) return res.status(404).json({message: "No notes found."})
   res.status(200).json(notes); // send all notes to response
 });
 
@@ -35,9 +36,7 @@ router.delete("/:id", async (req, res) => {
       .json({ message: `Note Deleted Successfully"`, deletedNote });
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .json({ message: "Server Error ", error})
+    res.status(500).json({ message: "Server Error ", error });
   }
 });
 

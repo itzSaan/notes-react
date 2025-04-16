@@ -36,9 +36,9 @@ const NoteCard = ({
 
   return (
     <div
-      className={`col-md-6 col-lg-4 single-note-item all-category note-${note.category}`}
+      className={`col-md- col-lg- card single-note-item all-category note-${note.category}`}
     >
-      <div className="card card-body">
+      <div className=" card-body">
         <span className="side-stick"></span>
         <div className="d-flex justify-content-between">
         <h5

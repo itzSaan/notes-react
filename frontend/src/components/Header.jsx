@@ -7,7 +7,7 @@ const Header = ({
   selectedCategory,
 }) => {
   return (
-    <ul className="nav nav-pills p-3 bg-white mb-3 rounded-3 align-items-center">
+    <ul className="nav nav-pills p-3 bg-whit mb-3 rounded-3 align-items-center">
       <li className="nav-item">
         <a
           onClick={() => handleCategorySelect("all")}
